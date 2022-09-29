@@ -1,0 +1,3 @@
+console.log("Hello World");
+//Type 'node hello-world-in-node.js' to run the js file....
+//Remember to run this file you need to write that command in corresponding path of file
