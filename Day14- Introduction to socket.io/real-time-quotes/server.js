@@ -1,7 +1,12 @@
 //Including the required files
 var app = require('express')();
+var cors = require('cors')
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+
+//To avoid CORS error
+app.use(cors());
+
 //server listening at 127.0.0.1:3000
 server.listen(3000);
 console.log("Server listening at: 3000");
