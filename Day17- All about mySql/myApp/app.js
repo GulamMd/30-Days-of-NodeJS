@@ -1,10 +1,23 @@
 import express from 'express'
-import { getNotes, getNoteById, createNote } from './database';
+import { getNotes, getNoteById, createNote } from './database.js';
 const app = express()
+app.use(express.json())
 
 app.get('/notes', async (req, res) => {
     const notes = await getNotes()
     res.send(notes);
+})
+
+app.get('/notes/:id', async (req, res) => {
+    const id = req.params.id
+    const note = await getNoteById(id)
+    res.send(note);
+})
+
+app.post('/notes', async (req, res) => {
+    const { title, contents } = req.body
+    const note = await createNote(title, contents)
+    res.status(201).send(note);
 })
 
 app.use((err, req, res, next) => {
@@ -12,7 +25,6 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something broke!");
 });
 
-let host = '8081'
-app.listen(host, () => {
-    console.log(`Server is running at http://localhost:${host}`)
+app.listen(8000, () => {
+    console.log("Server is running at host 8000")
 })

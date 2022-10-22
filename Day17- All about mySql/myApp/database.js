@@ -34,8 +34,8 @@ export async function createNote(title, contents) {
     return getNoteById(id)
 }
 
-const notes = await getNotes();
-const notesById = await getNoteById(1);
-const newNote = await createNote('test2', 'test2')
+// const notes = await getNotes();
+// const notesById = await getNoteById(1);
+// const newNote = await createNote('test2', 'test2')
 
-console.log(newNote);
+// console.log(newNote);
