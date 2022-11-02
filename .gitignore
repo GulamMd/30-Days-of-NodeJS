@@ -7,3 +7,4 @@ node_modules
 !.vscode/launch.json
 !.vscode/extensions.json
 Day17- All about mySql/myApp/.env
+Day28-Getting_Tweets_Using_Node/.env
