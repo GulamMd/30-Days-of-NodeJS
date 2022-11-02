@@ -24,42 +24,86 @@
     <title>Tweetoletics</title>
   </head>
   <body>
-    <br>
-    <br>
-    <br>
+    <br />
+    <br />
+    <br />
     <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <!-- Empty Div -->
-            </div>
-            <div class="col-md-6">
-                <h1>Enter the Keyword</h1>
-                <input type="text" class="box" name="keyword" id="keyword" placeholder="Enter the Keyword" required /><br>
-                <button id="sub" name="submitDetails" value="Start Processing" class=""> Start Now </button>
-            </div>
-            <div class="col-md-3">
-                <!-- Empty Div -->
-            </div>
+      <div class="row">
+        <div class="col-md-3">
+          <!-- Empty Div -->
         </div>
+        <div class="col-md-6">
+          <h1>Enter the Keyword</h1>
+          <input
+            type="text"
+            class="box"
+            name="keyword"
+            id="keyword"
+            placeholder="Enter the Keyword"
+            required
+          /><br />
+          <button
+            id="sub"
+            name="submitDetails"
+            value="Start Processing"
+            class=""
+          >
+            Start Now
+          </button>
+        </div>
+        <div class="col-md-3">
+          <!-- Empty Div -->
+        </div>
+      </div>
     </div>
-    <br>
-    <br>
+    <br />
+    <br />
     <div class="container">
-        <div class="row">
-            <div class="col-md-2">
-                <!-- Empty Div -->
-            </div>
-            <div class="col-md-8">
-                <h1> Live Tweets </h1>
-                <!-- Live tweets will be printed here -->
-            </div>
-            <br>
-            <br>
-            <div class="col-md-2">
-                <!-- Empty Div -->
-            </div>
+      <div class="row">
+        <div class="col-md-2">
+          <!-- Empty Div -->
         </div>
+        <div class="col-md-8">
+          <h1>Live Tweets</h1>
+          <!-- Live tweets will be printed here -->
+        </div>
+        <br />
+        <br />
+        <div class="col-md-2">
+          <!-- Empty Div -->
+        </div>
+      </div>
     </div>
   </body>
   <!-- Sockets code comes here -->
+
+  <script>
+    console.log("loading");
+    //Jquery code starts here
+    $("document").ready(function () {
+      console.log("loaded");
+      //Connecting the socket to host and port
+      var socket = io.connect("http://localhost:3000");
+      $("#sub").click(function () {
+        //keyword event handled at backend is raised here
+        socket.emit("keyword", { keyword: $("#keyword").val() });
+      });
+      //livetweets event raised at backend is handled here
+      socket.on("livetweets", function (data) {
+        console.log(data);
+        var t = data.data;
+        $("#tweets").append(
+          "<b> Keyword : " +
+            t.keyword +
+            " </b> </div> <div class='content'> " +
+            t.user +
+            "</div><div class='content'>" +
+            t.tweet +
+            "</div> <br> <hr>"
+        );
+      });
+      //Event ends
+    });
+    //jquery code ends here
+  </script>
 </html>
