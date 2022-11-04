@@ -77,3 +77,7 @@ app.get("/github/callback", function (req, res) {
 app.listen(3000, () =>
   console.log("Njera github-api app listening on port 3000!")
 );
+
+
+// set github_client_id=YOUR_CLIENT_ID
+// set github_client_secret=YOUR_CLIENT_SECRET	
